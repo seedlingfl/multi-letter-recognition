@@ -2,7 +2,9 @@
 
 # # I. Data Aquisition
 #  
-# First use 1notMNIST.ipynb to download and preprocess the [notMNIST](http://yaroslavvb.blogspot.com/2011/09/notmnist-dataset.html) dataset which is supposed to be harder than the [MNIST](http://yann.lecun.com/exdb/mnist/) dataset. Then this program will generate synthetic sequences of letters from the single-letter images in notMNIST. The sequence is limited to up to five letters. For sequences shorter than 5 letters, "blank" areas will be added to the end.
+# Before running this program, please first use 1notMNIST.ipynb to download and preprocess the notMNIST dataset.
+# This program generates synthetic sequences of letters from the single-letter images in notMNIST dataset. 
+# The sequence is limited to up to five letters. For sequences shorter than 5 letters, "blank" areas will be added to the end.
 
 
 # These are all the modules used. 
@@ -37,7 +39,8 @@ img_size2 = N * 28
 
 
 # concat several (1-5) single-letter images of size 28*28 to a larger image of size 28*140
-# method: for each single letter x in the dataset, choose two random integers n1 and n2 with values between 1 and 5, then concat the next n1 letters and last n2 letters of x (inclusive) in the dataset. This method will generate 1,000,000 sequences for training. 
+# method: for each single letter x in the dataset, choose two random integers n1 and n2 with values between 1 and 5, 
+# then concat the next n1 letters and last n2 letters of x (inclusive) in the dataset. This method will generate 1,000,000 sequences for training. 
 def generate_sequence_dataset(dataset,label):
     nb_rows = dataset.shape[0]
     print("the number of rows is",nb_rows);
@@ -246,7 +249,8 @@ with graph.as_default():
 
 
 # calculate the accuracy: define a prediction as correct only if the predicted sequence is exactly the same with the true label
-# the predicted sequence for an input image X is the sequence with maximum log-probability -- log[P(L|X)] + sum{log[P(S_i|X)]} where L represents length, S_i represents the i-th digit, and i = 1,2,...,L
+# the predicted sequence for an input image X is the sequence with maximum log-probability -- log[P(L|X)] + sum{log[P(S_i|X)]} 
+# where L represents length, S_i represents the i-th digit, and i = 1,2,...,L
 def accuracy(pred_len, pred_digit, labels):
 
     sum = 0
